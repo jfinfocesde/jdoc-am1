@@ -1,0 +1,169 @@
+# Constructores en Java
+
+Un constructor es un método especial que se ejecuta al crear una nueva instancia de una clase en Java. Su función principal es inicializar los atributos del objeto recién creado.
+
+**Características de los constructores:**
+
+-   Tienen el mismo nombre que la clase.
+-   No tienen un tipo de retorno.
+-   Se pueden definir con diferentes parámetros.
+-   Si no se define ningún constructor, Java crea un constructor por defecto sin parámetros.
+-   Se pueden sobrecargar, es decir, tener dos o más constructores con diferentes parámetros.
+
+### **Ejemplo:**
+
+```java
+public class Persona {
+  private String nombre;
+  private int edad;
+
+  public Persona() {
+    // Constructor por defecto
+  }
+
+  public Persona(String nombre, int edad) {
+    // Constructor con parámetros
+    this.nombre = nombre;
+    this.edad = edad;
+  }
+}
+```
+
+En este ejemplo, la clase `Persona` tiene dos constructores:
+
+-   **Constructor por defecto:** No tiene parámetros y se encarga de inicializar los atributos `nombre` y `edad` con valores por defecto ("" para `nombre` y 0 para `edad`).
+-   **Constructor con parámetros:** Recibe como parámetros el nombre y la edad de la persona, y se encarga de inicializar los atributos correspondientes.
+
+### **Uso de los constructores:**
+
+Los constructores se utilizan para:
+
+-   **Inicializar los atributos de un objeto.**
+-   **Realizar validaciones sobre los valores de los atributos.**
+-   **Ejecutar código específico al crear una nueva instancia de una clase.**
+
+### **Ejemplo de uso:**
+
+```java
+Persona persona1 = new Persona(); // Se crea una persona con el constructor por defecto
+
+Persona persona2 = new Persona("Juan", 30); // Se crea una persona con el constructor con parámetros
+
+System.out.println("Nombre: " + persona1.getNombre()); // Imprime ""
+System.out.println("Edad: " + persona1.getEdad()); // Imprime 0
+
+System.out.println("Nombre: " + persona2.getNombre()); // Imprime "Juan"
+System.out.println("Edad: " + persona2.getEdad()); // Imprime 30
+```
+# Herencia en Java:
+
+La herencia en Java es un mecanismo que permite a una clase (subclase) heredar las características (atributos y métodos) de otra clase (superclase). Esta es una de las características clave de la programación orientada a objetos que facilita la reutilización de código y la organización del mismo.
+
+**Beneficios de la herencia:**
+
+-   **Reutilización de código:** Permite evitar la duplicación de código al heredar características de una clase ya existente.
+-   **Extensibilidad:** Permite crear nuevas clases a partir de clases existentes, extendiendo su funcionalidad.
+-   **Mantenimiento:** Facilita el mantenimiento del código al centralizar la lógica en la superclase.
+-   **Organización:** Ayuda a organizar el código en una jerarquía de clases.
+### **Tipos de herencia en Java:**
+
+-   **Herencia simple:** Una subclase hereda de una única superclase.
+-   **Herencia jerárquica:** Una superclase tiene una o más subclases.
+-   **Herencia multinivel:** Una subclase hereda de otra subclase, que a su vez hereda de otra, y así sucesivamente.
+### **Ejemplo de herencia simple:**
+
+```java
+public class Persona {
+  private String nombre;
+  private int edad;
+
+  public String getNombre() {
+    return nombre;
+  }
+
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
+  }
+
+  public int getEdad() {
+    return edad;
+  }
+
+  public void setEdad(int edad) {
+    this.edad = edad;
+  }
+}
+
+public class Estudiante extends Persona {
+  private String matricula;
+
+  public String getMatricula() {
+    return matricula;
+  }
+
+  public void setMatricula(String matricula) {
+    this.matricula = matricula;
+  }
+}
+```
+
+En este ejemplo, la clase `Estudiante` hereda de la clase `Persona`. Esto significa que:
+
+-   La clase `Estudiante` tiene todos los atributos y métodos de la clase `Persona`.
+-   Se pueden crear objetos de la clase `Estudiante` que tendrán nombre, edad y matrícula.
+-   Se pueden utilizar los métodos `getNombre()`, `setNombre()`, `getEdad()` y `setEdad()` con objetos de la clase `Estudiante`.
+### **Modificadores de acceso y herencia:**
+
+Los modificadores de acceso controlan quién puede acceder a los atributos y métodos de una clase. En el contexto de la herencia, es importante tener en cuenta lo siguiente:
+
+-   Los atributos y métodos con modificador `public` son accesibles desde cualquier clase.
+-   Los atributos y métodos con modificador `protected` son accesibles desde la clase en la que se definen y desde sus subclases.
+-   Los atributos y métodos con modificador `private` solo son accesibles desde la clase en la que se definen.
+### **Ejemplo de modificadores de acceso y herencia:**
+
+```java
+public class Persona {
+  public String nombre; // Public, accesible desde cualquier clase
+  protected int edad; // Protected, accesible desde Persona y sus subclases
+  private String telefono; // Private, solo accesible desde Persona
+}
+
+public class Estudiante extends Persona {
+  public String getInformacion() {
+    return "Nombre: " + nombre + " - Edad: " + edad; // Se puede acceder a "nombre" y "edad" porque son "public" y "protected"
+    // return "Nombre: " + nombre + " - Edad: " + telefono; // No se puede acceder a "telefono" porque es "private"
+  }
+}
+```
+
+## Constructores y herencia en Java
+
+En Java, los constructores no se heredan de la superclase a la subclase. Sin embargo, existen mecanismos para trabajar con constructores en el contexto de la herencia:
+
+**1\. Llamada al constructor de la superclase:**
+
+-   Se utiliza la palabra clave `super` para invocar al constructor de la superclase desde el constructor de la subclase.
+-   Es obligatorio llamar al constructor de la superclase antes de realizar cualquier otra acción en el constructor de la subclase.
+### **Ejemplo:**
+
+```java
+public class Persona {
+  public Persona(String nombre) {
+    this.nombre = nombre;
+  }
+}
+
+public class Estudiante extends Persona {
+  private String matricula;
+
+  public Estudiante(String nombre, String matricula) {
+    super(nombre); // Llama al constructor de la superclase con el nombre
+    this.matricula = matricula;
+  }
+}
+```
+
+En este ejemplo, la clase `Estudiante` necesita el nombre y la matrícula para crear un nuevo objeto. Se llama al constructor de la superclase (`Persona`) con el nombre y luego se inicializa el atributo `matricula`.
+
+
+
