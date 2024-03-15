@@ -97,17 +97,17 @@ export const itemsInfo: itemsInfoType[] = [
     {
         href: "",
         label: "Semana 5",
-        date: '2024-3-15',
+        date: '2024-3-16',
         submenu: [
             {
                 href: "/course/contents/semana5",
                 label: "Contenido",
-                date: '2024-3-15',
+                date: '2024-3-16',
             },
             {
                 href: "/course/activities/actividad3",
                 label: "Actividad 3",
-                date: '2024-3-15',
+                date: '2024-3-16',
             },
         ]
     },    
