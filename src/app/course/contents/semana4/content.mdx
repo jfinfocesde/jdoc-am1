@@ -59,6 +59,10 @@ System.out.println("Edad: " + persona2.getEdad()); // Imprime 30
 
 La herencia en Java es un mecanismo que permite a una clase (subclase) heredar las características (atributos y métodos) de otra clase (superclase). Esta es una de las características clave de la programación orientada a objetos que facilita la reutilización de código y la organización del mismo.
 
+La herencia en Java es una característica clave del paradigma de programación orientada a objetos (POO), que permite a las clases heredar propiedades y comportamientos de otras clases.
+
+La palabra reservada extends se utiliza para establecer una relación de herencia entre dos clases. La clase que extiende se llama "subclase" o "clase derivada", mientras que la clase de la que se extiende se conoce como "superclase" o "clase base".
+
 **Beneficios de la herencia:**
 
 -   **Reutilización de código:** Permite evitar la duplicación de código al heredar características de una clase ya existente.
@@ -166,4 +170,162 @@ public class Estudiante extends Persona {
 En este ejemplo, la clase `Estudiante` necesita el nombre y la matrícula para crear un nuevo objeto. Se llama al constructor de la superclase (`Persona`) con el nombre y luego se inicializa el atributo `matricula`.
 
 
+## La palabra reservada super 
 
+La palabra reservada super se utiliza dentro de la subclase para acceder a los métodos y atributos de su superclase. Aquí hay algunos usos comunes de la palabra reservada super:
+
+1.  Invocar métodos de la superclase: Si la subclase sobrecarga un método de la superclase, puede acceder a la implementación del método de la superclase utilizando la palabra reservada super seguida del nombre del método. Por ejemplo:
+
+
+```java
+class Superclass {
+  void method() {
+    System.out.println("Superclass method");
+  }
+}
+
+class Subclass extends Superclass {
+  void method() {
+    super.method(); // Invoca el método de la superclase
+    System.out.println("Subclass method");
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    Subclass obj = new Subclass();
+    obj.method();
+  }
+}
+```
+
+2.  Acceder a los atributos de la superclase: Si la subclase necesita acceder a un atributo de la superclase, puede utilizar la palabra reservada super seguida del nombre del atributo.
+3.  Invocar el constructor de la superclase: Si la subclase tiene un constructor y la superclase también, el constructor de la subclase debe invocar al constructor de la superclase mediante la palabra reservada super en la primera línea del constructor de la subclase.
+
+```java
+class Superclass {
+  Superclass(String name) {
+    System.out.println("Superclass constructor");
+  }
+}
+
+class Subclass extends Superclass {
+  Subclass(String name) {
+    super(name); // Invoca el constructor de la superclase
+    System.out.println("Subclass constructor");
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    Subclass obj = new Subclass("example");
+  }
+}
+```
+
+La herencia en Java promueve la reutilización del código y la facilidad de mantenimiento de las aplicaciones. La palabra reservada super juega un papel crucial en la interacción entre clases base y derivadas al permitir a las clases derivadas acceder a los miembros de sus clases base.
+
+## Ejemplo 
+
+```java
+class Empleado {
+  private String nombre;
+  private int idEmpleado;
+  private double salario;
+
+  public Empleado(String nombre, int idEmpleado, double salario) {
+    this.nombre = nombre;
+    this.idEmpleado = idEmpleado;
+    this.salario = salario;
+  }
+
+  public String getNombre() {
+    return nombre;
+  }
+
+  public int getIdEmpleado() {
+    return idEmpleado;
+  }
+
+  public double getSalario() {
+    return salario;
+  }
+
+  public void mostrarDetalles() {
+    System.out.println("Nombre del empleado: " + nombre);
+    System.out.println("ID del empleado: " + idEmpleado);
+    System.out.println("Salario: " + salario);
+  }
+}
+
+class Gerente extends Empleado {
+  private String departamento;
+
+  public Gerente(String nombre, int idEmpleado, double salario, String departamento) {
+    super(nombre, idEmpleado, salario);
+    this.departamento = departamento;
+  }
+
+  public String getDepartamento() {
+    return departamento;
+  }
+
+  public void mostrarDetalles() {
+    super.mostrarDetalles();
+    System.out.println("Departamento: " + departamento);
+  }
+}
+
+class Desarrollador extends Empleado {
+  private String lenguajeProgramacion;
+
+  public Desarrollador(String nombre, int idEmpleado, double salario, String lenguajeProgramacion) {
+    super(nombre, idEmpleado, salario);
+    this.lenguajeProgramacion = lenguajeProgramacion;
+  }
+
+  public String getLenguajeProgramacion() {
+    return lenguajeProgramacion;
+  }
+
+  public void mostrarDetalles() {
+    super.mostrarDetalles();
+    System.out.println("Lenguaje de programación: " + lenguajeProgramacion);
+  }
+}
+
+class Tecnico extends Empleado {
+  private String areaDeEspecializacion;
+
+  public Tecnico(String nombre, int idEmpleado, double salario, String areaDeEspecializacion) {
+    super(nombre, idEmpleado, salario);
+    this.areaDeEspecializacion = areaDeEspecializacion;
+  }
+
+  public String getAreaDeEspecializacion() {
+    return areaDeEspecializacion;
+  }
+
+  public void mostrarDetalles() {
+    super.mostrarDetalles();
+    System.out.println("Área de especialización: " + areaDeEspecializacion);
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    Empleado emp1 = new Empleado("Juan", 1, 50000);
+    Gerente mgr1 = new Gerente("María", 2, 80000, "Ventas");
+    Desarrollador dev1 = new Desarrollador("Roberto", 3, 70000, "Java");
+    Tecnico tec1 = new Tecnico("Lucas", 4, 60000, "Redes");
+
+    emp1.mostrarDetalles();
+    System.out.println("\n");
+    mgr1.mostrarDetalles();
+    System.out.println("\n");
+    dev1.mostrarDetalles();
+    System.out.println("\n");
+    tec1.mostrarDetalles();
+  }
+}
+```
