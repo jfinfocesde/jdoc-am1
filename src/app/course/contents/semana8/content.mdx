@@ -1,0 +1,180 @@
+# **¿Qué es la sobrecarga de métodos?**
+
+La sobrecarga de métodos es una característica de Java que permite tener dos o más métodos con el mismo nombre dentro de la misma clase, pero con diferentes tipos de parámetros o diferente número de parámetros.
+
+## **¿Para qué sirve la sobrecarga de métodos?**
+
+La sobrecarga de métodos se utiliza para:
+
+-   **Proporcionar diferentes funcionalidades para el mismo nombre de método.** Por ejemplo, podemos tener un método `calcularArea` que recibe como parámetro un círculo y otro método `calcularArea` que recibe como parámetro un cuadrado.
+-   **Hacer que el código sea más legible y fácil de entender.** Al usar nombres de métodos significativos, podemos evitar tener que crear métodos con nombres muy diferentes para realizar tareas similares.
+-   **Permitir la reutilización de código.** Podemos escribir un método general y luego sobrecargarlo para casos específicos.
+**¿Cómo se define un método sobrecargado?**
+
+Para definir un método sobrecargado, simplemente se debe usar el mismo nombre de método con diferentes tipos de parámetros o diferente número de parámetros. Por ejemplo:
+
+```java
+public class EjemploSobrecarga {
+
+    public int sumar(int a, int b) {
+        return a + b;
+    }
+
+    public double sumar(double a, double b) {
+        return a + b;
+    }
+}
+```
+
+En este ejemplo, tenemos dos métodos `sumar`:
+
+-   El primer método `sumar` recibe dos parámetros de tipo `int` y devuelve un valor de tipo `int`.
+-   El segundo método `sumar` recibe dos parámetros de tipo `double` y devuelve un valor de tipo `double`.
+**¿Cómo se llama a un método sobrecargado?**
+
+Al llamar a un método sobrecargado, se debe especificar el tipo de dato de cada parámetro. Por ejemplo:
+
+```java
+EjemploSobrecarga ej = new EjemploSobrecarga();
+
+int resultado1 = ej.sumar(1, 2); // Se llama al primer método sumar
+double resultado2 = ej.sumar(1.5, 2.5); // Se llama al segundo método sumar
+```
+
+## **Reglas para la sobrecarga de métodos**
+
+Las siguientes son las reglas para la sobrecarga de métodos en Java:
+
+-   Los métodos sobrecargados deben tener el mismo nombre.
+-   Los métodos sobrecargados deben tener diferentes tipos de parámetros o diferente número de parámetros.
+-   El orden de los parámetros no importa.
+-   El tipo de retorno del método no se considera para la sobrecarga.
+## **Ejemplo completo**
+
+El siguiente es un ejemplo completo de sobrecarga de métodos en Java:
+
+```java
+public class EjemploSobrecarga {
+
+    public int sumar(int a, int b) {
+        return a + b;
+    }
+
+    public double sumar(double a, double b) {
+        return a + b;
+    }
+
+    public static void main(String[] args) {
+        EjemploSobrecarga ej = new EjemploSobrecarga();
+
+        int resultado1 = ej.sumar(1, 2); // Se llama al primer método sumar
+        double resultado2 = ej.sumar(1.5, 2.5); // Se llama al segundo método sumar
+
+        System.out.println("Resultado 1: " + resultado1);
+        System.out.println("Resultado 2: " + resultado2);
+    }
+}
+```
+
+La salida de este programa es:
+
+```bash
+Resultado 1: 3
+Resultado 2: 4.0
+```
+
+# **¿Qué es la sobrecarga de constructores?**
+
+La sobrecarga de constructores es una característica de Java que permite tener dos o más constructores dentro de la misma clase, con diferentes tipos de parámetros o diferente número de parámetros.
+
+## **¿Para qué sirve la sobrecarga de constructores?**
+
+La sobrecarga de constructores se utiliza para:
+
+-   **Permitir la creación de objetos de diferentes maneras.** Por ejemplo, podemos tener un constructor que recibe como parámetro el nombre de una persona y otro constructor que recibe como parámetro el nombre y la edad de una persona.
+-   **Hacer que el código sea más legible y fácil de entender.** Al usar nombres de constructores significativos, podemos evitar tener que crear constructores con nombres muy diferentes para realizar tareas similares.
+-   **Permitir la reutilización de código.** Podemos escribir un constructor general y luego sobrecargarlo para casos específicos.
+## **¿Cómo se define un constructor sobrecargado?**
+
+Para definir un constructor sobrecargado, simplemente se debe usar el mismo nombre de constructor con diferentes tipos de parámetros o diferente número de parámetros. Por ejemplo:
+
+```java
+public class Persona {
+
+    public Persona(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Persona(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+}
+```
+
+En este ejemplo, tenemos dos constructores `Persona`:
+
+-   El primer constructor `Persona` recibe un parámetro de tipo `String` y inicializa el atributo `nombre`.
+-   El segundo constructor `Persona` recibe dos parámetros de tipo `String` e `int` e inicializa los atributos `nombre` y `edad`.
+## **¿Cómo se crea un objeto con un constructor sobrecargado?**
+
+Al crear un objeto con un constructor sobrecargado, se debe especificar el tipo de dato de cada parámetro. Por ejemplo:
+
+```java
+Persona persona1 = new Persona("Juan"); // Se llama al primer constructor Persona
+Persona persona2 = new Persona("Ana", 25); // Se llama al segundo constructor Persona
+```
+
+## **Reglas para la sobrecarga de constructores**
+
+Las siguientes son las reglas para la sobrecarga de constructores en Java:
+
+-   Los constructores sobrecargados deben tener el mismo nombre.
+-   Los constructores sobrecargados deben tener diferentes tipos de parámetros o diferente número de parámetros.
+-   El orden de los parámetros no importa.
+-   El tipo de retorno del constructor no se considera para la sobrecarga.
+
+## **Ejemplo completo**
+
+El siguiente es un ejemplo completo de sobrecarga de constructores en Java:
+
+```java
+public class Persona {
+
+    private String nombre;
+    private int edad;
+
+    public Persona(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Persona(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public static void main(String[] args) {
+        Persona persona1 = new Persona("Juan"); // Se llama al primer constructor Persona
+        Persona persona2 = new Persona("Ana", 25); // Se llama al segundo constructor Persona
+
+        System.out.println("Persona 1: " + persona1.getNombre());
+        System.out.println("Persona 2: " + persona2.getNombre() + ", " + persona2.getEdad());
+    }
+}
+```
+
+La salida de este programa es:
+
+```bash
+Persona 1: Juan
+Persona 2: Ana, 25
+```
+

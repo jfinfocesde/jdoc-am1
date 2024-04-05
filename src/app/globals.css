@@ -24,17 +24,7 @@
     margin-bottom: 16px;
     width: max-content;
     max-width: 100%;
-    overflow: auto;
-    color: white;
-  }
-  
-  tr {
-    background-color: var(--color-canvas-default);
-    border-top: 1px solid var(--color-border-muted);
-  }
-  
-  tr:nth-child(2n) {
-    background-color: var(--color-canvas-subtle);
+    overflow: auto;   
   }
   
   td,

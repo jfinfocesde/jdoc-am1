@@ -1,0 +1,375 @@
+# Clases abstractas en Java
+
+Las clases abstractas en Java son una herramienta fundamental para la programación orientada a objetos. Permiten definir una estructura común para un conjunto de clases relacionadas, sin necesidad de implementar todos los detalles específicos en la clase abstracta.
+
+### **Características principales:**
+
+-   **No se pueden instanciar:** No se pueden crear objetos directamente de una clase abstracta.
+-   **Pueden tener métodos abstractos:** Estos métodos no tienen una implementación en la clase abstracta y deben ser implementados por las clases que heredan de ella.
+-   **Pueden tener métodos concretos:** Estos métodos sí tienen una implementación en la clase abstracta y son heredados por las clases que heredan de ella.
+-   **Sirven como base para la herencia:** Las clases abstractas se utilizan como superclases para otras clases, que se denominan subclases.
+**Ventajas:**
+
+-   **Reutilización de código:** Permiten evitar la duplicación de código al definir características comunes en una sola clase.
+-   **Mayor flexibilidad:** Permiten crear una estructura general que puede ser adaptada a diferentes necesidades específicas en las subclases.
+-   **Mejora la organización del código:** Permiten organizar el código en una jerarquía de clases, lo que facilita su comprensión y mantenimiento.
+
+
+# **Ejemplo 1: Clase abstracta `Animal`**
+
+```java
+public abstract class Animal {
+
+    protected String nombre;
+    protected int edad;
+
+    public Animal(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
+    public abstract void hacerRuido();
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+}
+```
+
+## **Clase concreta `Perro` que hereda de `Animal`**
+
+```java
+public class Perro extends Animal {
+
+    public Perro(String nombre, int edad) {
+        super(nombre, edad);
+    }
+
+    @Override
+    public void hacerRuido() {
+        System.out.println("Guau guau!");
+    }
+
+}
+```
+
+## **Clase concreta `Gato` que hereda de `Animal`**
+
+```java
+public class Gato extends Animal {
+
+    public Gato(String nombre, int edad) {
+        super(nombre, edad);
+    }
+
+    @Override
+    public void hacerRuido() {
+        System.out.println("Miau miau!");
+    }
+
+}
+```
+
+### **En este ejemplo:**
+
+-   La clase `Animal` es una clase abstracta que define características comunes a todos los animales, como nombre y edad.
+-   La clase `Perro` y la clase `Gato` son subclases de la clase `Animal` que implementan las características específicas de cada tipo de animal.
+-   El método `hacerRuido()` es un método abstracto en la clase `Animal` y es implementado por las subclases `Perro` y `Gato`.
+
+
+# **Ejemplo 2: Clase abstracta `Persona`**
+
+```java
+public abstract class Persona {
+
+    protected String nombre;
+    protected int edad;
+
+    public Persona(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
+    public abstract void hablar();
+
+    public void dormir() {
+        System.out.println("ZZZzzzz");
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+}
+```
+
+## **Interfaz `Hablante`:**
+
+```java
+public interface Hablante {
+
+    public void saludar();
+    public void despedirse();
+
+}
+```
+
+## **Clase concreta `Estudiante` que hereda de `Persona` e implementa `Hablante`:**
+
+```java
+public class Estudiante extends Persona implements Hablante {
+
+    public Estudiante(String nombre, int edad) {
+        super(nombre, edad);
+    }
+
+    @Override
+    public void hablar() {
+        System.out.println("Estoy estudiando");
+    }
+
+    @Override
+    public void saludar() {
+        System.out.println("Hola, me llamo " + nombre);
+    }
+
+    @Override
+    public void despedirse() {
+        System.out.println("Adiós, hasta la próxima");
+    }
+
+}
+```
+
+
+### **En este ejemplo:**
+
+-   La clase `Persona` es una clase abstracta que define características comunes a todas las personas, como nombre y edad.
+-   La clase `Estudiante` es una subclase de la clase `Persona` que implementa las características específicas de un estudiante.
+-   La clase `Persona` tiene un método abstracto `hablar()` y un método concreto `dormir()`.
+-   La clase `Estudiante` implementa el método abstracto `hablar()` de la clase `Persona`.
+-   La clase `Estudiante` también implementa la interfaz `Hablante`, que define los métodos `saludar()` y `despedirse`.
+
+# ¿Qué es una interfaz en Java y para qué sirve?
+
+En Java, una interfaz es un tipo de referencia que define un conjunto de métodos abstractos y constantes.
+
+### **Características:**
+
+-   **No se pueden instanciar:** No se pueden crear objetos directamente de una interfaz.
+-   **Solo contiene métodos abstractos:** Estos métodos no tienen una implementación en la interfaz y deben ser implementados por las clases que la implementan.
+-   **Pueden contener constantes:** Las constantes son variables que no pueden ser modificadas.
+-   **Se utilizan para definir contratos:** Las interfaces definen un contrato entre una clase y las clases que la implementan. La clase que implementa la interfaz debe proporcionar una implementación para todos los métodos abstractos de la interfaz.
+### **Ventajas:**
+
+-   **Reutilización de código:** Permiten evitar la duplicación de código al definir características comunes en una sola interfaz.
+-   **Mayor flexibilidad:** Permiten crear una estructura general que puede ser adaptada a diferentes necesidades específicas en las clases que la implementan.
+-   **Mejora la organización del código:** Permiten organizar el código en una jerarquía de interfaces y clases, lo que facilita su comprensión y mantenimiento.
+
+## **Ejemplo 1: Interfaz `IDibujable`**
+
+```java
+public interface IDibujable {
+
+    public void dibujar();
+
+}
+```
+
+## **Ejemplo 2: Clase `Rectángulo` que implementa la interfaz `IDibujable`**
+
+```java
+public class Rectangulo implements IDibujable {
+
+    private int ancho;
+    private int alto;
+
+    public Rectangulo(int ancho, int alto) {
+        this.ancho = ancho;
+        this.alto = alto;
+    }
+
+    @Override
+    public void dibujar() {
+        System.out.println("Dibujando un rectángulo de " + ancho + "x" + alto);
+    }
+
+}
+```
+
+## **Ejemplo 3: Clase `Círculo` que implementa la interfaz `IDibujable`**
+
+```java
+public class Circulo implements IDibujable {
+
+    private int radio;
+
+    public Circulo(int radio) {
+        this.radio = radio;
+    }
+
+    @Override
+    public void dibujar() {
+        System.out.println("Dibujando un círculo de radio " + radio);
+    }
+
+}
+```
+
+### **En este ejemplo:**
+
+-   La interfaz `Drawable` define un método abstracto `draw()`.
+-   Las clases `Rectangulo` y `Circulo` implementan la interfaz `Drawable` y proporcionan una implementación para el método `draw()`.
+-   Se puede crear una variable de tipo `Drawable` que puede apuntar a un objeto de cualquier clase que implemente la interfaz `Drawable`.
+
+# ¿Qué son los métodos abstractos?
+
+**Un método abstracto es un método que no tiene una implementación en la clase que lo declara.** En otras palabras, solo se define la firma del método (nombre, tipo de retorno, parámetros) pero no se proporciona el código que lo ejecuta.
+
+### **Los métodos abstractos se utilizan en las siguientes situaciones:**
+
+-   **En clases abstractas:** Las clases abstractas son clases que no se pueden instanciar directamente. Se utilizan para definir una estructura y comportamiento común para un conjunto de clases relacionadas. Los métodos abstractos se declaran en la clase abstracta y se implementan en las clases que la heredan.
+-   **En interfaces:** Las interfaces son contratos que definen un conjunto de métodos que las clases que las implementan deben cumplir. Los métodos de las interfaces son siempre abstractos.
+**Las características de un método abstracto son:**
+
+-   **No tiene cuerpo:** No se proporciona el código que ejecuta el método.
+-   **Se declara con la palabra clave `abstract`:** La palabra clave `abstract` se usa para indicar que el método no tiene una implementación.
+-   **Se hereda por las subclases:** Las subclases de una clase abstracta o las clases que implementan una interfaz heredan los métodos abstractos.
+-   **Se implementa en las subclases:** Las subclases de una clase abstracta o las clases que implementan una interfaz deben proporcionar una implementación para los métodos abstractos que heredan.
+
+## Ejemplo 1 - clase abstracta
+
+```java
+public abstract class Animal {
+
+    public abstract void comer();
+
+}
+
+public class Perro extends Animal {
+
+    @Override
+    public void comer() {
+        System.out.println("El perro está comiendo");
+    }
+
+}
+```
+
+## Ejemplo 2 - interfaz
+
+```java
+public interface IAnimal {
+
+    public void comer();
+    public void dormir();
+
+}
+
+public class Perro implements IAnimal {
+
+    @Override
+    public void comer() {
+        System.out.println("El perro está comiendo");
+    }
+
+    @Override
+    public void dormir() {
+        System.out.println("El perro está durmiendo");
+    }
+
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        IAnimal perro = new Perro();
+
+        perro.comer();
+        perro.dormir();
+
+    }
+
+}
+```
+
+# Diferencia entre clase abstracta e interfaz en Java
+
+Las clases abstractas e interfaces son herramientas fundamentales en la programación orientada a objetos para definir estructuras y comportamientos comunes entre diferentes clases.
+
+### **Principales diferencias:**
+
+<table>
+        <thead>
+            <tr>
+                <th>Característica</th>
+                <th>Clase Abstracta</th>
+                <th>Interfaz</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>¿Se puede instanciar?</td>
+                <td>No</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>¿Puede tener métodos concretos?</td>
+                <td>Sí</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>¿Puede tener variables?</td>
+                <td>Sí</td>
+                <td>Sí (solo constantes)</td>
+            </tr>
+            <tr>
+                <td>¿Puede heredar de otra clase?</td>
+                <td>Sí (de una sola clase)</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>¿Puede implementar otras interfaces?</td>
+                <td>Sí</td>
+                <td>Sí</td>
+            </tr>
+            <tr>
+                <td>¿Qué define?</td>
+                <td>Una estructura y comportamiento general</td>
+                <td>Un contrato (métodos abstractos)</td>
+            </tr>
+        </tbody>
+    </table>
+
+**En resumen:**
+
+-   **Las clases abstractas** se utilizan para definir una estructura común para un conjunto de clases relacionadas, y pueden tener métodos concretos e interfaces.
+-   **Las interfaces** se utilizan para definir un contrato que deben cumplir las clases que las implementan, y solo pueden tener métodos abstractos y constantes.
+
+

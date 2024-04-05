@@ -11,7 +11,7 @@ interface itemsInfoType {
     submenu: subItemsInfoType[]
 }
 
-export const modedev = true
+export const modedev = false
 
 export const infoCourse = {
     title: "Programación de Aplicaciones Móviles I",
@@ -120,6 +120,40 @@ export const itemsInfo: itemsInfoType[] = [
                 href: "/course/contents/semana6",
                 label: "Contenido",
                 date: '2024-3-23',
+            },
+            // {
+            //     href: "/course/activities/actividad3",
+            //     label: "Actividad 3",
+            //     date: '2024-3-16',
+            // },
+        ]
+    },    
+    {
+        href: "",
+        label: "Semana 7",
+        date: '2024-4-6',
+        submenu: [
+            {
+                href: "/course/contents/semana7",
+                label: "Contenido",
+                date: '2024-4-6',
+            },
+            // {
+            //     href: "/course/activities/actividad3",
+            //     label: "Actividad 3",
+            //     date: '2024-3-16',
+            // },
+        ]
+    },    
+    {
+        href: "",
+        label: "Semana 8",
+        date: '2024-4-13',
+        submenu: [
+            {
+                href: "/course/contents/semana8",
+                label: "Contenido",
+                date: '2024-4-13',
             },
             // {
             //     href: "/course/activities/actividad3",
