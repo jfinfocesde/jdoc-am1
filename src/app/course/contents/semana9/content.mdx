@@ -1,0 +1,216 @@
+# Enlace de componentes de vista con findViewById() en Android Studio
+
+El método `findViewById()` es un método fundamental en Android para enlazar componentes de vista declarados en un layout XML con el código Java de la clase de la actividad o fragment. Este método permite obtener una referencia a un componente específico a través de su ID único, el cual se asigna en el layout.
+
+## **Funcionamiento:**
+
+El método `findViewById()` toma como parámetro un entero que representa el ID del componente que se desea obtener. El ID debe ser único dentro del layout. El método devuelve una instancia del tipo de componente correspondiente, como `TextView`, `EditText`, `Button`, etc.
+
+## **Pasos para enlazar componentes con findViewById():**
+
+## 1.  **Declaración del componente en el layout XML:**
+
+En el archivo XML del layout (por ejemplo, `activity_main.xml`), se asigna un ID único a cada componente que se desea enlazar con el código Java.
+
+
+```java
+<TextView
+    android:id="@+id/nombreTextView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Nombre:" />
+
+<EditText
+    android:id="@+id/emailEditText"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Correo electrónico" />
+
+<Button
+    android:id="@+id/enviarButton"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Enviar" />
+```
+
+
+## 2.  **Enlazar componentes en la clase de la actividad:**
+
+En la clase Java de la actividad o fragment (por ejemplo, `MainActivity.java`), se utiliza el método `findViewById()` para obtener una referencia a cada componente utilizando su ID único.
+
+
+```java
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main); // Carga el layout XML
+
+        // Enlace de componentes con findViewById()
+        TextView nombreTextView = (TextView) findViewById(R.id.nombreTextView);
+        EditText emailEditText = (EditText) findViewById(R.id.emailEditText);
+        Button enviarButton = (Button) findViewById(R.id.enviarButton);
+
+        // ...
+
+    }
+}
+```
+
+## **Ejemplo completo:**
+
+### **Archivo activity\_main.xml:**
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/nombreTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombre:" />
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Correo electrónico" />
+
+    <Button
+        android:id="@+id/enviarButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enviar" />
+
+</LinearLayout>
+```
+
+### **Archivo MainActivity.java:**
+
+```java
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main); // Carga el layout XML
+
+        // Enlace de componentes con findViewById()
+        TextView nombreTextView = (TextView) findViewById(R.id.nombreTextView);
+        EditText emailEditText = (EditText) findViewById(R.id.emailEditText);
+        Button enviarButton = (Button) findViewById(R.id.enviarButton);
+
+        // ...
+
+        // Ejemplo de uso de los componentes enlazados
+        nombreTextView.setText("Nuevo nombre");
+        emailEditText.getText().toString(); // Obtener el texto del EditText
+        enviarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Acciones al hacer clic en el botón
+            }
+        });
+
+    }
+}
+```
+
+## **Ventajas de usar findViewById():**
+
+-   Es un método simple y directo para enlazar componentes.
+-   No requiere configuración adicional.
+-   Compatible con todas las versiones de Android.
+
+
+# Cambiar de vistas en Android Studio: Explicación y Ejemplo
+
+En el desarrollo de aplicaciones Android, existen diversas formas de cambiar entre diferentes vistas o pantallas dentro de una aplicación. A continuación, se detallan dos métodos comunes:
+
+## Utilizando Intents:
+
+Los Intents son el mecanismo principal para la comunicación entre diferentes componentes de una aplicación Android, incluyendo el cambio de vistas. Para cambiar de vista usando Intents, se deben seguir estos pasos:
+
+## **Paso 1: Crear un Intent:**
+
+Se crea un objeto Intent especificando la clase de la actividad o fragment a la que se desea navegar.
+
+
+```java
+Intent intent = new Intent(this, SecondActivity.class);
+```
+
+## **Paso 2: Iniciar la actividad:**
+
+Se utiliza el método `startActivity()` para iniciar la actividad o fragment especificada en el Intent.
+
+
+```java
+startActivity(intent);
+```
+
+## **Paso 3 (Opcional): Pasar datos entre vistas:**
+
+Si se desea pasar datos entre las vistas, se pueden utilizar los métodos `putExtra()` y `getSerializableExtra()` del objeto Intent.
+
+
+```java
+// Enviar datos
+intent.putExtra("nombre", "Juan Perez");
+intent.putExtra("edad", 30);
+
+// Recibir datos
+String nombre = intent.getStringExtra("nombre");
+int edad = intent.getIntExtra("edad", 0);
+```
+
+### **Ejemplo:**
+
+Cambiar de la vista principal (MainActivity) a una vista de detalles (DetailActivity) pasando el nombre de un usuario.
+
+### **MainActivity.java:**
+
+```java
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Button verDetallesButton = findViewById(R.id.verDetallesButton);
+        verDetallesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                intent.putExtra("nombre", "Juan Perez");
+                startActivity(intent);
+            }
+        });
+    }
+}
+```
+
+### **DetailActivity.java:**
+
+```java
+public class DetailActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detail);
+
+        String nombre = getIntent().getStringExtra("nombre");
+        TextView nombreTextView = findViewById(R.id.nombreTextView);
+        nombreTextView.setText("Nombre: " + nombre);
+    }
+}
+```
+
+
