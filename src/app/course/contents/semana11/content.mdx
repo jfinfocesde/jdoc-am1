@@ -1,0 +1,151 @@
+## Conversor de Unidades
+
+## **Objetivo:**
+
+Crear dos clases en Java, `Conversor` y sus subclases `Longitud` y `Temperatura`, que permitan convertir unidades de medida.
+
+## **Descripción:**
+
+1.  La clase `Conversor` debe ser una clase abstracta que defina el método abstracto `convertir(String unidadOrigen, String unidadDestino, double valorConvertir)`. Este método debe recibir las unidades de origen y destino, y el valor a convertir, y devolver el valor convertido.
+2.  Las clases `Longitud` y `Temperatura` deben ser subclases de `Conversor` que implementen el método `convertir` para realizar las conversiones entre las unidades de longitud y temperatura, respectivamente.
+3.  Cada subclase debe implementar los métodos de conversión individuales para cada par de unidades (por ejemplo, `MilímetrosACentímetros`, `FahrenheitACelsius`, etc.).
+4.  Las conversiones deben realizarse utilizando las fórmulas matemáticas correctas para cada par de unidades.
+
+## Superclase Conversor
+
+```java
+package com.example.myapplication.conversor;
+
+public abstract class Conversor {
+    public abstract double convertir(String unidadOrigen, String unidadDestino, double valorConvertir);
+}
+```
+
+## Subclase Longitud
+
+```java
+package com.example.myapplication.conversor;
+
+public class Longitud extends Conversor {
+
+    @Override
+    public double convertir(String unidadOrigen, String unidadDestino, double valorConvertir) {
+
+        switch (unidadOrigen) {
+            case "Milímetros":
+                if (unidadDestino.equals("Centímetros")) {
+                    return MilímetrosACentímetros(valorConvertir);
+                } else if (unidadDestino.equals("Metros")) {
+                    return MilímetrosAMetros(valorConvertir);
+                }
+                break;
+            case "Centímetros":
+                if (unidadDestino.equals("Milímetros")) {
+                    return CentimetrosAMilimetros(valorConvertir);
+                } else if (unidadDestino.equals("Metros")) {
+                    return CentimetrosAMetros(valorConvertir);
+                }
+                break;
+            case "Metros":
+                if (unidadDestino.equals("Milímetros")) {
+                    return MetrosAMilimetros(valorConvertir);
+                } else if (unidadDestino.equals("Centímetros")) {
+                    return MetrosACentimetros(valorConvertir);
+                }
+                break;
+        }
+        return 0;
+    }
+    private double MilímetrosACentímetros(double valorConvertir) {
+        return valorConvertir / 10;
+    }
+
+    private double CentimetrosAMilimetros(double valorConvertir) {
+        return valorConvertir * 10;
+    }
+
+    private double MetrosAMilimetros(double valorConvertir) {
+        return valorConvertir * 1000;
+    }
+
+    private double MilímetrosAMetros(double valorConvertir) {
+        return valorConvertir / 1000;
+    }
+
+    private double CentimetrosAMetros(double valorConvertir) {
+        return valorConvertir / 100;
+    }
+
+    private double MetrosACentimetros(double valorConvertir) {
+        return valorConvertir * 100;
+    }
+
+
+}
+```
+
+## Subclase Temperatura
+
+```java
+package com.example.myapplication.conversor;
+
+public class Temperatura extends  Conversor{
+    @Override
+    public double convertir(String unidadOrigen, String unidadDestino, double valorConvertir) {
+        switch (unidadOrigen) {
+            case "Celsius":
+                if (unidadDestino.equals("Fahrenheit")) {
+                    return celsiusAFahrenheit(valorConvertir);
+                } else if (unidadDestino.equals("Kelvin")) {
+                    return celsiusAKelvin(valorConvertir);
+                }
+                break;
+            case "Fahrenheit":
+                if (unidadDestino.equals("Celsius")) {
+                    return fahrenheitACelsius(valorConvertir);
+                } else if (unidadDestino.equals("Kelvin")) {
+                    return fahrenheitAKelvin(valorConvertir);
+                }
+                break;
+            case "Kelvin":
+                if (unidadDestino.equals("Celsius")) {
+                    return kelvinACelsius(valorConvertir);
+                } else if (unidadDestino.equals("Fahrenheit")) {
+                    return kelvinAFahrenheit(valorConvertir);
+                }
+                break;
+        }
+        return 0;
+    }
+
+    private double celsiusAFahrenheit(double valorConvertir) {
+        // Fórmula: Fahrenheit = (Celsius x 9/5) + 32
+        return (valorConvertir * 9/5) + 32;
+    }
+
+    private double fahrenheitACelsius(double valorConvertir) {
+        // Fórmula: Celsius = (Fahrenheit - 32) x 5/9
+        return (valorConvertir - 32) * 5/9;
+    }
+
+    private double celsiusAKelvin(double valorConvertir) {
+        // Fórmula: Kelvin = Celsius + 273.15
+        return valorConvertir + 273.15;
+    }
+
+    private double kelvinACelsius(double valorConvertir) {
+        // Fórmula: Celsius = Kelvin - 273.15
+        return valorConvertir - 273.15;
+    }
+
+    private double fahrenheitAKelvin(double valorConvertir) {
+        // Fórmula: Kelvin = (Fahrenheit + 459.67) x 5/9
+        return (valorConvertir + 459.67) * 5/9;
+    }
+
+    private double kelvinAFahrenheit(double valorConvertir) {
+        // Fórmula: Fahrenheit = (Kelvin x 9/5) - 459.67
+        return (valorConvertir * 9/5) - 459.67;
+    }
+}
+```
